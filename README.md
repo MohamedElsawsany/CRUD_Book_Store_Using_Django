@@ -39,7 +39,8 @@ A responsive Django-based web application for managing books. Users can add, edi
 
 4. **Apply migrations**:
    ```
-   python manage.py migrate
+   python bookstore_project\manage.py makemigrations
+   python bookstore_project\manage.py migrate
   
 5. **Run the development server**:
    ```  

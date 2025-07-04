@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Book - Bookstore{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card border-danger">
+            <div class="card-header bg-danger text-white">
+                <h4 class="mb-0">
+                    <i class="bi bi-exclamation-triangle"></i> Confirm Delete
+                </h4>
+            </div>
+            <div class="card-body">
+                <p class="lead">Are you sure you want to delete this book?</p>
+                <div class="alert alert-warning">
+                    <strong>{{ object.title }}</strong><br>
+                    <small class="text-muted">
+                        Created: {{ object.created_at|date:"M d, Y" }}<br>
+                        ISBN: {{ object.isbn.isbn_number|default:"Not assigned" }}
+                    </small>
+                </div>
+                <p class="text-danger">
+                    <strong>Warning:</strong> This action cannot be undone. The book and its associated ISBN will be permanently deleted.
+                </p>
+                
+                <form method="post" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">
+                        <i class="bi bi-trash"></i> Yes, Delete Book
+                    </button>
+                </form>
+                <a href="{% url 'book_detail' object.pk %}" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left"></i> Cancel
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
